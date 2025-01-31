@@ -1,126 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website with Navigation</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #333;
-      color: white;
-      padding: 10px 0;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #444;
-      overflow: hidden;
-    }
-
-    nav a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-    }
-
-    nav a:hover {
-      background-color: #ddd;
-      color: black;
-    }
-
-    section {
-      padding: 20px;
-      margin: 20px;
-      background-color: #f4f4f9;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #333;
-      color: white;
-    }
-
-    #contact-form {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome to My Website</h1>
 
-  <!-- Navigation Menu -->
-  <header>
-    <h1>Al-Muhalab</h1>
-  </header>
-  
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="contact.html">Contact Us</a>
-  </nav>
+        <!-- Navigation Menu -->
+        <ul class="nav nav-pills justify-content-center mb-4">
+            <li class="nav-item">
+                <a class="nav-link active" href="#home" onclick="showContent('home')">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#manpower" onclick="showContent('manpower')">Manpower</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#store" onclick="showContent('store')">Store</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#vehicle" onclick="showContent('vehicle')">Vehicle</a>
+            </li>
+        </ul>
 
-  <!-- Home Section -->
-  <section id="home">
-    <h2>Welcome to Our Website</h2>
-    <p>Explore our services, learn more about us, or reach out to us via the Contact section.</p>
-  </section>
+        <!-- Content Section -->
+        <div id="content" class="mt-4">
+            <div id="home-content">
+                <h2>Home</h2>
+                <p>Welcome to the homepage of My Website!</p>
+            </div>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We are a company dedicated to providing excellent service and support to our clients.</p>
-  </section>
+            <div id="manpower-content" style="display: none;">
+                <h2>Manpower</h2>
+                <p>Details about manpower will go here.</p>
+            </div>
 
-  <!-- Services Section -->
-  <section id="services">
-    <h2>Our Services</h2>
-    <p>We offer a wide range of services to meet your needs. Contact us to find out more.</p>
-  </section>
+            <div id="store-content" style="display: none;">
+                <h2>Store</h2>
+                <p>Loading items from the database...</p>
+                <div id="store-data"></div>
+            </div>
 
+            <div id="vehicle-content" style="display: none;">
+                <h2>Vehicle</h2>
+                <p>Details about vehicles will go here.</p>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        function showContent(section) {
+            const sections = ['home', 'manpower', 'store', 'vehicle'];
+            sections.forEach(id => {
+                document.getElementById(`${id}-content`).style.display = id === section ? 'block' : 'none';
+            });
 
-  <footer>
-    <p>&copy; 2025 Al-Muhalab. All rights reserved.</p>
-  </footer>
-
+            if (section === 'store') {
+                fetch('fetch_store.php')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('store-data').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
 </body>
 </html>
