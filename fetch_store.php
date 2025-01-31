@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root"; // Default username for XAMPP
 $password = ""; // Default password for XAMPP
-$dbname = "mydatabase"; // Replace with your database name
+$dbname = "db_mlab"; // Replace with your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch store data
-$sql = "SELECT id, itemcode, itemname FROM store";
+$sql = "SELECT id, itemcode, itemname FROM 	store_material";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
