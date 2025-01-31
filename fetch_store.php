@@ -18,7 +18,7 @@ $sql = "SELECT id, m_id, m_name FROM 	store_material";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class='table table-bordered'><tr><th>ID</th><th>Item Code</th><th>Item Name</th></tr>";
+    echo "<table class='table table-bordered'><tr><th>ID</th><th>Item Code</th><th>Material Name</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr><td>{$row['id']}</td><td>{$row['m_id']}</td><td>{$row['m_name']}</td></tr>";
     }
