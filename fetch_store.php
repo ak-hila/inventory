@@ -7,7 +7,7 @@ $dbname = "db_mlab"; // Replace with your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-echo $conn;
+echo $dbname;
 echo "akhila";
 // Check connection
 if ($conn->connect_error) {
