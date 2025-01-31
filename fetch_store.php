@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch store data
-$sql = "SELECT id, m_id, m_name FROM 	store_material";
+$sql = "SELECT id, m_id, m_name FROM store_material";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
